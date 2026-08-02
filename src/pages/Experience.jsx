@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Typography, Box, Card, CardContent, Chip } from '@mui/material';
+import { Typography, Box, Card, CardContent, Chip, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { 
   Timeline,
   TimelineItem,
@@ -12,11 +13,36 @@ import {
 import WorkIcon from '@mui/icons-material/Work';
 
 const Experience = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const experiences = [
+
     {
-      title: "University of Southern California - Research Assistant",
+      title: "Software Developer @ Keck School of Medicine of the University of Southern California",
+      duration: "Jul 2026 - Present",
+      location: "Los Angeles, California, United States",
+      description: [
+        "Engineering scalable full-stack clinical web applications featuring patient scheduling, modular React components and dynamic research portals, reducing feature development time by 30% through reusable UI architecture.",
+        "Developing live analytics dashboards and end-to-end clinical data pipelines for ADRC, GI and DBS research studies, automating data processing workflows, reducing manual reporting effort by 50% and enabling real-time visualization of key research metrics."
+      ],
+      skills: ["Python", "React", "Flask", "Data Engineering", "Analytics", "Full-Stack Development"]
+    },
+    {
+      title: "Machine Learning Engineer Intern @ ReferU.AI",
+      duration: "June 2025 - Present",
+      location: "Los Angeles, California, United States",
+      description: [
+        "Developed Statute Tracker’s citation detection system by integrating GPT-4 with pattern-matching algorithms, enabling real-time NLP-based monitoring of legal statute updates, improving extraction accuracy by 35% and reducing processing latency by 22%.",
+        "Built a testing framework with CourtListener API, automated caching and preprocessing pipelines to parse and verify citations across federal, state and regulatory codes, increasing verification throughput by 3× for 50K+ documents."
+      ],
+      skills: ["Machine Learning", "Python", "LLM", "API", "Testing"]
+    },
+    
+    {
+      title: "Research Assistant @ University of Southern California",
       duration: "January 2025 - Present",
-      location: "Los Angeles, California",
+      location: "Los Angeles, California, United States",
       description: [
         "Working on early detection of Alzheimer's disease using MRI-based neuroimaging analysis and machine learning to identify neurodegenerative biomarkers.",
         "Leveraging brain imaging analysis to detect key biomarkers and enable accurate classification of disease progression through advanced feature extraction."
@@ -24,32 +50,32 @@ const Experience = () => {
       skills: ["Neuroimaging", "Machine Learning", "Alzheimer's Disease", "MRI Analysis"]
     },
     {
-      title: "Transo - Project Intern",
+      title: "Software Engineering Intern @ Transo",
       duration: "November 2023 - February 2024",
-      location: "Bangalore, Karnataka",
+      location: "Bangalore, Karnataka, India",
       description: [
-        "Worked as a Project Intern at TRANSO, focusing on real-time data analysis to enhance transportation efficiency and optimize logistics operations.",
-        "Contributed to developing optimization and logistics analysis models, applying advanced techniques to improve the performance and cost-effectiveness of transportation systems."
+        "Designed and implemented optimization models for the Vehicle Routing Problem using linear programming and heuristic algorithms, improving route computation efficiency by 12% across 1K+ daily routes while enabling scalable, data-driven decision-making for distributed transportation networks.",
+        "Performed end-to-end logistics analysis on 2M+ records, identifying system bottlenecks and delivering reliable, fault-tolerant solutions that reduced operational costs by 8% and enhanced overall system performance and operational efficiency."
       ],
       skills: ["Python", "Optimization", "Data Analysis", "Logistics"]
     },
     {
-        title: "Anand Diagnostics Laboratory - Intern",
+        title: "Machine Learning Intern @ Anand Diagnostics Laboratory",
         duration: "September 2023 - March 2024",
-        location: "Bangalore, Karnataka",
+        location: "Bangalore, Karnataka, India",
         description: [
-          "Worked as an Intern at Anand Diagnostic Laboratory, using image segmentation techniques to identify the genus and species of bacteria and enhancing diagnostic accuracy.",
-          "Leveraged advanced tools and techniques to streamline microbiological research and diagnosis and improving the efficiency of bacterial identification in clinical settings."
+          "Implemented image segmentation pipelines using TensorFlow and OpenCV for bacterial genus and species classification, leveraging preprocessing and data augmentation to increase training data diversity by 3× and improve model robustness.",
+          "Designed and trained CNN-based classification models, automating bacterial identification workflows and reducing manual image analysis effort by approximately 45% while improving the scalability of diagnostic processes."
         ],
         skills: ["Deep Learning", "Image Processing", "CNNs", "Microbiology"]
     },
     {
-      title: "CSIR - National Aerospace Laboratories - Research Intern",
+      title: "Software Engineering Intern @ CSIR - National Aerospace Laboratories",
       duration: "October 2023 - November 2023",
-      location: "Bangalore, Karnataka",
+      location: "Bangalore, Karnataka, India",
       description: [
-        "Contributed to research at CSIR - NAL, focusing on anomaly detection techniques for improving system reliability and performance, particularly in braking systems.",
-        "Conducted in-depth analysis of various time series forecasting algorithms, evaluating their effectiveness for predicting system behaviors and enhancing the accuracy of predictive models."
+        "Evaluated anomaly detection algorithms (ARIMA, LSTM) for aerospace braking systems, implementing feature engineering, data preprocessing pipelines and scalable workflows to improve predictive accuracy by 7% in safety-critical environments.",
+        "Designed and deployed end-to-end, data-driven monitoring and alerting systems, enabling proactive maintenance and reducing system failure response time by 19%, enhancing fault tolerance and operational efficiency in large-scale distributed environments."
       ],
       skills: ["Time Series Analysis", "Machine Learning", "Research", "Anomaly Detection"]
     },
@@ -58,18 +84,18 @@ const Experience = () => {
       duration: "October 2023",
       location: "Remote",
       description: [
-        "Actively participated in Hacktoberfest to contribute meaningful code and to the community, fostering innovation and learning in the process.",
-        "Collaborated with global developers through pull requests and code reviews"
+        "Implemented and fine-tuned advanced deep learning and image segmentation pipelines using TensorFlow, improving prediction accuracy by 18% and integrating models into production-grade Flask APIs with low-latency inference and scalable deployment.",
+        "Optimized backend workflows and designed modular GUI components, reducing processing time and enhancing system responsiveness while improving throughput, reliability and performance through data preprocessing and augmentation techniques."
       ],
       skills: ["Open Source", "Git", "Python", "JavaScript", "Machine Learning"]
     },
     {
-      title: "Brane Enterprises - Java Developer Intern",
+      title: "Software Engineering Intern @ Brane Enterprises",
       duration: "March 2023 - June 2023",
-      location: "Bangalore, Karnataka",
+      location: "Bangalore, Karnataka, India",
       description: [
-        "Developed a project at Brane Enterprises Pvt Ltd by leveraging Kafka for real-time data streaming, Redis for efficient caching and Spring Boot to build robust REST APIs, enhancing backend operations for seamless performance.",
-        "Gained hands-on experience with Docker for containerization and utilized Grafana dashboards to monitor and manage tickets, enhancing project tracking and system efficiency."
+        "Optimized backend microservices using Java and Spring Boot, designing modular, reusable components and integrating REST APIs to build distributed and parallel systems, reducing downtime by 30% and supporting 500k+ daily transactions.",
+        "Monitored and maintained production systems with Grafana dashboards, logging and diagnosing bottlenecks to ensure high availability and fault tolerance, achieving uptime and enhancing overall system performance for distributed environments."
       ],
       skills: ["Spring Boot", "Kafka", "Microservices", "Grafana", "MongoDB", "Elasticsearch"]
     }
@@ -81,11 +107,22 @@ const Experience = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Typography variant="h3" gutterBottom sx={{ mb: 8, textAlign: 'center' }}>
+      <Typography variant="h3" gutterBottom sx={{ mb: { xs: 4, md: 8 }, textAlign: 'center' }}>
         Experience
       </Typography>
 
-      <Timeline position="alternate">
+      <Timeline
+        position={isMobile ? 'right' : 'alternate'}
+        sx={{
+          px: { xs: 0, md: 2 },
+          '& .MuiTimelineConnector-root': {
+            backgroundColor: 'rgba(255, 182, 193, 0.3)',
+          },
+          '& .MuiTimelineContent-root': {
+            px: { xs: 1, md: 2 },
+          },
+        }}
+      >
         {experiences.map((exp, index) => (
           <TimelineItem key={index}>
             <TimelineSeparator>
@@ -100,9 +137,9 @@ const Experience = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: index * 0.2 }}
               >
-                <Card sx={{ mb: 2 }}>
-                  <CardContent>
-                    <Typography variant="h6" color="primary">
+                <Card sx={{ mb: 2, overflow: 'hidden' }}>
+                  <CardContent sx={{ p: { xs: 2, md: 3 }, '&:last-child': { pb: { xs: 2, md: 3 } } }}>
+                    <Typography variant="h6" color="primary" sx={{ wordBreak: 'break-word' }}>
                       {exp.title}
                     </Typography>
                     <Typography variant="subtitle2" color="textSecondary">

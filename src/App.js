@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import Home from './pages/Home';
 import { SnackbarProvider } from 'notistack';
 import Fab from '@mui/material/Fab';
@@ -36,24 +36,55 @@ const App = () => {
       h1: { 
         fontWeight: 800,
         color: '#e6f1ff',
+        fontSize: '2.5rem',
+        '@media (max-width:600px)': { fontSize: '2rem' },
       },
       h2: { 
         fontWeight: 700,
         color: '#e6f1ff',
+        fontSize: '2rem',
+        '@media (max-width:600px)': { fontSize: '1.6rem' },
       },
       h3: { 
         fontWeight: 700,
         color: '#e6f1ff',
+        fontSize: '1.75rem',
+        '@media (max-width:600px)': { fontSize: '1.4rem' },
       },
       h4: { 
         fontWeight: 600,
         color: '#e6f1ff',
+        fontSize: '1.35rem',
+        '@media (max-width:600px)': { fontSize: '1.15rem' },
+      },
+      h5: {
+        '@media (max-width:600px)': { fontSize: '1rem' },
+      },
+      h6: {
+        '@media (max-width:600px)': { fontSize: '0.95rem' },
       },
     },
     components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            backgroundColor: '#0a192f',
+          },
+        },
+      },
       MuiPaper: {
         styleOverrides: {
           root: {
+            backgroundImage: 'none',
+          },
+        },
+      },
+      MuiCard: {
+        styleOverrides: {
+          root: {
+            background: 'rgba(17, 34, 64, 0.7)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 182, 193, 0.1)',
             backgroundImage: 'none',
           },
         },
@@ -73,18 +104,37 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <SnackbarProvider 
-        maxSnack={3} 
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-      >
-        <Home isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        <ScrollToTop />
-      </SnackbarProvider>
-    </ThemeProvider>
+    <div style={{ 
+      position: 'relative',
+      minHeight: '100vh',
+      width: '100%',
+      overflowX: 'hidden',
+      overflowY: 'auto',
+      backgroundColor: '#0a192f',
+    }}>
+      <div style={{ 
+        position: 'relative', 
+        zIndex: 20,
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: '#0a192f',
+      }}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <SnackbarProvider 
+            maxSnack={3} 
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+          >
+            <Home isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+            <ScrollToTop />
+          </SnackbarProvider>
+        </ThemeProvider>
+      </div>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Typography, IconButton, Link, Grid, Stack } from '@mui/material';
+import { Box, Container, Typography, IconButton, Link, Grid } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
@@ -33,10 +33,11 @@ const Footer = () => {
   return (
     <Box sx={{ 
       background: 'linear-gradient(to bottom, #112240, #0a192f)',
-      pt: 8,
+      pt: { xs: 4, md: 8 },
+      px: { xs: 2, md: 0 },
       position: 'relative',
       zIndex: 2,
-      borderTop: '1px solid rgba(255,255,255,0.1)'
+      borderTop: '1px solid rgba(255, 182, 193, 0.15)'
     }}>
       <Container maxWidth="lg">
         <Grid container justifyContent="center" textAlign="center">
@@ -44,7 +45,7 @@ const Footer = () => {
             <Typography variant="h4" gutterBottom sx={{ 
               color: '#ffb6c1',
               fontWeight: 'bold',
-              fontSize: '2.5rem',
+              fontSize: { xs: '1.75rem', md: '2.5rem' },
               mb: 3
             }}>
               Let's Connect!
@@ -52,7 +53,8 @@ const Footer = () => {
             <Typography variant="body1" sx={{ 
               color: '#8892b0', 
               mb: 4,
-              fontSize: '1.2rem'
+              fontSize: { xs: '1rem', md: '1.2rem' },
+              px: { xs: 1, md: 0 },
             }}>
               Feel free to reach out for collaborations or just a friendly hello!
             </Typography>
@@ -94,7 +96,7 @@ const Footer = () => {
         <Box sx={{ 
           mt: 4, 
           py: 3, 
-          borderTop: '1px solid rgba(255,255,255,0.1)',
+          borderTop: '1px solid rgba(255, 182, 193, 0.15)',
           textAlign: 'center'
         }}>
           <Typography variant="body2" sx={{ color: '#8892b0' }}>

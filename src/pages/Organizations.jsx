@@ -7,7 +7,7 @@ import CodeIcon from '@mui/icons-material/Code';
 const Organizations = () => {
   const organizations = [
     {
-      title: "USC Society of Women Engineers (SWE)",
+      title: "Society of Women Engineers (SWE)",
       role: "Member",
       duration: "Sep 2024 - Present",
       description: [
@@ -16,47 +16,66 @@ const Organizations = () => {
       skills: ["Networking", "Community Building", "Women in STEM"]
     },
     {
-      title: "Artificial Intelligence Los Angeles (AILA)",
-      role: "Member",
-      duration: "Dec 2024 - Present",
+      title: "Women in Engineering",
+      role: "Mentor",
+      duration: "Aug 2025 - May 2026",
       description: [
-        "Participating in hands-on AI projects at AI LA, leveraging skills to tackle real-world challenges and enhance technical and collaborative problem-solving abilities."
+        "Mentored engineering students by sharing technical knowledge, career guidance and resources to support their academic and professional growth."
       ],
-      skills: ["Networking", "Community Building", "Artificial Intelligence"]
+      skills: ["Mentorship", "Leadership", "Networking", "Community Building"]
+    },
+    {
+      title: "Medicinal Chemistry Core Lab @ USC",
+      role: "Lab Manager",
+      duration: "May 2025 - May 2026",
+      description: [
+        "Managed computational chemistry platforms and developed web solutions to support molecular modeling workflows and research operations."
+      ],
+      skills: ["Computational Chemistry", "Web Development", "System Administration", "Data Management"]
     },
     {
       title: "Viterbi Graduate Mentorship Program",
       role: "Mentor",
-      duration: "Jan 2025 - Present",
+      duration: "Jan 2025 - Dec 2025",
       description: [
-        "Mentoring incoming students and guiding them in course selection, project development and ensuring a supportive environment that fosters both academic and personal growth."
+        "Mentored incoming students and guiding them in course selection, project development and ensuring a supportive environment that fosters both academic and personal growth."
       ],
       skills: ["Leadership", "Mentorship", "Community Building"]
     },
     {
+      title: "Artificial Intelligence Los Angeles (AILA)",
+      role: "Member",
+      duration: "Dec 2024 - Dec 2025",
+      description: [
+        "Participated in hands-on AI projects at AI LA, leveraging skills to tackle real-world challenges and enhance technical and collaborative problem-solving abilities."
+      ],
+      skills: ["Networking", "Community Building", "Artificial Intelligence"]
+    },
+    {
         title: "Mindful USC",
         role: "Member",
-        duration: "Jan 2025 - Present",
+        duration: "Jan 2025 - May 2025",
         description: [
-          "Collaborating with students and professionals to create resources and initiatives focused on mindfulness and emotional well-being."
+          "Collaborated with students and professionals to create resources and initiatives focused on mindfulness and emotional well-being."
         ],
         skills: ["Networking", "Community Building", "Mental Health", "Wellness"]
       },
       {
         title: "Graduates Rising in Data Science (GRIDS)",
         role: "Executive Board Member",
-        duration: "Dec 2025 - Present",
+        duration: "Feb 2025 - May 2025",
         description: [
-          "Working with a team of 10+ members to organize events and workshops to help students transition into data science careers."
+          "Worked with a team of 10+ members to organize events and workshops to help students transition into data science careers."
         ],
         skills: ["Leadership", "Community Building", "Data Science"]
       }
   ];
 
-  // Split organizations into rows (2-2-1 pattern)
+  // Split organizations into rows (2-2-2-1 pattern)
   const firstRow = organizations.slice(0, 2);  // First 2 orgs
   const secondRow = organizations.slice(2, 4); // Next 2 orgs
-  const lastOrg = organizations.slice(4, 5);   // Last org centered
+  const thirdRow = organizations.slice(4, 6);
+  const lastOrg = organizations.slice(6, 7);   // Last org centered
 
   return (
     <motion.div
@@ -64,24 +83,33 @@ const Organizations = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Typography variant="h3" gutterBottom sx={{ mb: 8, textAlign: 'center' }}>
+      <Typography variant="h3" gutterBottom sx={{ mb: { xs: 4, md: 8 }, textAlign: 'center' }}>
         Organizations
       </Typography>
 
       {/* First row - 2 organizations */}
-      <Grid container spacing={6} sx={{ mb: 6 }} justifyContent="space-evenly">
+      <Grid container spacing={{ xs: 3, md: 6 }} sx={{ mb: { xs: 3, md: 6 } }} justifyContent="center">
         {firstRow.map((org, index) => (
-          <Grid item xs={12} md={5.5} key={index}>
+          <Grid item xs={12} sm={6} key={index}>
             <OrganizationCard org={org} index={index} />
           </Grid>
         ))}
       </Grid>
 
       {/* Second row - 2 organizations */}
-      <Grid container spacing={6} sx={{ mb: 6 }} justifyContent="space-evenly">
+      <Grid container spacing={{ xs: 3, md: 6 }} sx={{ mb: { xs: 3, md: 6 } }} justifyContent="center">
         {secondRow.map((org, index) => (
-          <Grid item xs={12} md={5.5} key={index}>
+          <Grid item xs={12} sm={6} key={index}>
             <OrganizationCard org={org} index={index + 2} />
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* Third row - 2 organizations */}
+      <Grid container spacing={{ xs: 3, md: 6 }} sx={{ mb: { xs: 3, md: 6 } }} justifyContent="center">
+        {thirdRow.map((org, index) => (
+          <Grid item xs={12} sm={6} key={index}>
+            <OrganizationCard org={org} index={index + 4} />
           </Grid>
         ))}
       </Grid>
@@ -89,14 +117,8 @@ const Organizations = () => {
       {/* Last row - 1 organization centered */}
       <Grid container justifyContent="center">
         {lastOrg.map((org, index) => (
-          <Grid item xs={12} md={5.5} key={index} sx={{ 
-            display: 'flex',
-            justifyContent: 'center',
-            maxWidth: { md: '48%' }  // Limit width to match other cards
-          }}>
-            <Box sx={{ width: '100%' }}>  {/* Wrapper to constrain width */}
-              <OrganizationCard org={org} index={index + 4} />
-            </Box>
+          <Grid item xs={12} sm={8} md={6} key={index}>
+            <OrganizationCard org={org} index={index + 6} />
           </Grid>
         ))}
       </Grid>
@@ -128,9 +150,9 @@ const OrganizationCard = ({ org, index }) => (
         }
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-        <GroupsIcon sx={{ color: '#ffb6c1', mr: 1 }} />
-        <Typography variant="h6" color="primary">
+      <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
+        <GroupsIcon sx={{ color: '#ffb6c1', mr: 1, mt: 0.3, flexShrink: 0 }} />
+        <Typography variant="h6" color="primary" sx={{ wordBreak: 'break-word' }}>
           {org.title}
         </Typography>
       </Box>

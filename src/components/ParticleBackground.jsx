@@ -1,110 +1,104 @@
 import React from 'react';
 import { useCallback } from "react";
 import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
-import { Box } from '@mui/material';
+import { loadSlim } from "tsparticles-slim";
 
 const ParticleBackground = () => {
-  const particlesInit = useCallback(async engine => {
-    await loadFull(engine);
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
   }, []);
 
   return (
-    <Box sx={{ 
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      zIndex: 1
-    }}>
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          fullScreen: {
+    <Particles
+      id="tsparticles"
+      init={particlesInit}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 10
+      }}
+      options={{
+        autoPlay: true,
+        background: {
+          color: {
+            value: "transparent"
+          },
+          opacity: 1
+        },
+        fullScreen: {
+          enable: true,
+          zIndex: 10
+        },
+        particles: {
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: "#8d8d8d"
+          },
+          shape: {
+            type: "circle"
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+            animation: {
+              enable: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true
+          },
+          links: {
             enable: true,
-            zIndex: 1
+            distance: 150,
+            color: "#8d8d8d",
+            opacity: 0.4,
+            width: 1
           },
-          particles: {
-            number: {
-              value: 100,
-              density: {
-                enable: true,
-                value_area: 1000
-              }
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            outModes: {
+              default: "bounce"
             },
-            color: {
-              value: "#ffb6c1"
-            },
-            shape: {
-              type: "circle"
-            },
-            opacity: {
-              value: 0.5,
-              random: false
-            },
-            size: {
-              value: 3,
-              random: {
-                enable: true,
-                minimumValue: 1
-              }
-            },
-            links: {
+            attract: {
+              enable: false
+            }
+          }
+        },
+        interactivity: {
+          detectsOn: "window",
+          events: {
+            onHover: {
               enable: true,
-              distance: 150,
-              color: "#ffb6c1",
-              opacity: 0.4,
-              width: 1
+              mode: "grab"
             },
-            move: {
-              enable: true,
-              speed: 2,
-              direction: "none",
-              random: false,
-              straight: false,
-              outModes: {
-                default: "bounce"
-              },
-              attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              links: {
+                opacity: 1
               }
             }
-          },
-          interactivity: {
-            events: {
-              onHover: {
-                enable: true,
-                mode: "grab"
-              },
-              onClick: {
-                enable: true,
-                mode: "push"
-              },
-              resize: true
-            },
-            modes: {
-              grab: {
-                distance: 140,
-                links: {
-                  opacity: 1
-                }
-              },
-              push: {
-                quantity: 4
-              }
-            }
-          },
-          background: {
-            color: "#0a192f"
-          },
-          detectRetina: true
-        }}
-      />
-    </Box>
+          }
+        },
+        detectRetina: true
+      }}
+    />
   );
 };
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Paper, Chip, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LaunchIcon from '@mui/icons-material/Launch';
 import CodeIcon from '@mui/icons-material/Code';
 
 const projects = [
@@ -39,6 +38,14 @@ const projects = [
     category: "Artificial Intelligence and Machine Learning"
   },
   {
+    title: "Eclipse",
+    description: "A 2D puzzle-platformer that combines physics-based traversal, light manipulation, and strategic puzzle-solving where players navigate by grappling onto shadows and controlling light.",
+    image: "https://www.scrapingbee.com/blog/web-scraping-101/cover.png",
+    tags: ["Unity", "Game Development"],
+    github: "https://reyanshgupta.github.io/Eclipse/",
+    category: "Games"
+  },
+  {
     title: "Mastermind",
     description: "Mastermind is a code-breaking game where players guess a 4-color code within 10 tries, receiving feedback on correct and incorrect positions after each guess.",
     image: "https://spring.io/img/spring.svg",
@@ -53,14 +60,6 @@ const projects = [
     tags: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/AishwaryaJagadish/Sketch-Your-Dreams",
     category: "Web Development"
-  },
-  {
-    title: "Turtle Racing",
-    description: "A simple turtle racing game built with Python and Pygame.",
-    image: "https://cdn.dribbble.com/users/1626229/screenshots/14111197/media/ced6d51aa0d460e9b9bd6b3a95c7ef01.jpg",
-    tags: ["Python", "Pygame", "Game Development"],
-    github: "https://github.com/AishwaryaJagadish/Turtle-Racing",
-    category: "Games"
   },
   {
     title: "Jackpot Slot",
@@ -119,6 +118,14 @@ const projects = [
     category: "Data Analysis"
   },
   {
+    title: "Wine Quality Analysis",
+    description: "Performed exploratory data analysis and built machine learning models to predict and evaluate wine quality based on physicochemical properties.",
+    image: "https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/stock-assets/getty/image/photography/cf/71/CF71E_077.component.xl.ts=1687857779903.jpg",
+    tags: ["Python", "Machine Learning", "Pandas", "Scikit-learn"],
+    github: "https://github.com/AishwaryaJagadish/WineQualityAnalysis",
+    category: "Data Analysis"
+  },
+  {
     title: "Weather Forecast",
     description: "Developed a weather forecast application using APIs to provide real-time weather updates and predictions based on user location.",
     image: "https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/stock-assets/getty/image/photography/cf/71/CF71E_077.component.xl.ts=1687857779903.jpg",
@@ -136,7 +143,7 @@ const projects = [
   },
   {
     title: "Credit Card Fraud Detection",
-    description: "faDeveloped a credit card fraud detection system using machine learning to identify fraudulent transactions based on transaction patterns.",
+    description: "Developed a credit card fraud detection system using machine learning to identify fraudulent transactions based on transaction patterns.",
     image: "https://www.ibm.com/content/dam/connectedassets-adobe-cms/worldwide-content/stock-assets/getty/image/photography/cf/71/CF71E_077.component.xl.ts=1687857779903.jpg",
     tags: ["Python", "Machine Learning", "Credit Card Fraud Detection"],
     github: "https://github.com/AishwaryaJagadish/CreditCardFraudDetection",
@@ -198,8 +205,8 @@ const ProjectCard = ({ project }) => {
         sx={{
           p: 2.5,
           height: '100%',
-          minHeight: '280px',
-          maxHeight: '300px',
+          minHeight: { xs: 'auto', md: '280px' },
+          maxHeight: { xs: 'none', md: '300px' },
           background: 'rgba(17, 34, 64, 0.7)',
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 182, 193, 0.1)',
@@ -275,6 +282,14 @@ const ProjectCard = ({ project }) => {
 };
 
 const Projects = () => {
+  const categoryOrder = [
+    'Artificial Intelligence and Machine Learning',
+    'Web Development',
+    'Data Analysis',
+    'Games',
+    'IoT',
+  ];
+
   // Group projects by category
   const groupedProjects = projects.reduce((acc, project) => {
     if (!acc[project.category]) {
@@ -284,9 +299,15 @@ const Projects = () => {
     return acc;
   }, {});
 
+  const sortedCategories = Object.keys(groupedProjects).sort((a, b) => {
+    const orderA = categoryOrder.indexOf(a);
+    const orderB = categoryOrder.indexOf(b);
+    return (orderA === -1 ? categoryOrder.length : orderA) - (orderB === -1 ? categoryOrder.length : orderB);
+  });
+
   return (
-    <Box sx={{ py: 6 }}>
-      <Container maxWidth="lg">
+    <Box sx={{ py: { xs: 3, md: 6 } }}>
+      <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -297,9 +318,11 @@ const Projects = () => {
           </Typography>
         </motion.div>
 
-        {Object.entries(groupedProjects).map(([category, categoryProjects], categoryIndex, categoriesArray) => (
+        {sortedCategories.map((category, categoryIndex) => {
+          const categoryProjects = groupedProjects[category];
+          return (
           <Box key={category} sx={{ 
-            mb: categoryIndex === categoriesArray.length - 1 ? 0 : 6
+            mb: categoryIndex === sortedCategories.length - 1 ? 0 : 6
           }}>
             <Typography 
               variant="h4" 
@@ -307,7 +330,9 @@ const Projects = () => {
                 mb: 3,
                 color: '#ffb6c1',
                 borderBottom: '2px solid rgba(255, 182, 193, 0.3)',
-                pb: 1
+                pb: 1,
+                fontSize: { xs: '1.1rem', md: '1.35rem' },
+                wordBreak: 'break-word',
               }}
             >
               {category}
@@ -330,7 +355,8 @@ const Projects = () => {
               ))}
             </Grid>
           </Box>
-        ))}
+          );
+        })}
       </Container>
     </Box>
   );

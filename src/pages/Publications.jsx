@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Grid, Paper, Link, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
-import ArticleIcon from '@mui/icons-material/Article';
 import SchoolIcon from '@mui/icons-material/School';
 
 const publications = [

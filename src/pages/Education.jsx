@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Typography, Card, CardContent, Box, Chip } from '@mui/material';
+import { Typography, Card, CardContent, Box, Chip, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { 
   Timeline,
   TimelineItem,
@@ -13,23 +14,26 @@ import SchoolIcon from '@mui/icons-material/School';
 import CodeIcon from '@mui/icons-material/Code';
 
 const Education = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const education = [
     {
       school: "University of Southern California",
       degree: "Masters in Computer Science",
-      duration: "August 2024 - Present",
+      duration: "August 2024 - May 2026",
       location: "Los Angeles, California",
       courses: [
         "Machine Learning",
+        "Analysis of Algorithms",
+        "Artificial Intelligence",
         "Deep Learning and its Applications",
-        "Foundations of Artificial Intelligence",
         "Natural Language Processing"
       ]
     },
     {
       school: "Dayananda Sagar College of Engineering",
       degree: "Bachelors in Computer Science and Engineering",
-      gpa: "CGPA: 9.77",
       duration: "December 2020 - May 2024",
       location: "Bangalore, Karnataka",
       courses: [
@@ -49,11 +53,22 @@ const Education = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Typography variant="h3" gutterBottom sx={{ mb: 8, textAlign: 'center' }}>
+      <Typography variant="h3" gutterBottom sx={{ mb: { xs: 4, md: 8 }, textAlign: 'center' }}>
         Education
       </Typography>
 
-      <Timeline position="alternate">
+      <Timeline
+        position={isMobile ? 'right' : 'alternate'}
+        sx={{
+          px: { xs: 0, md: 2 },
+          '& .MuiTimelineConnector-root': {
+            backgroundColor: 'rgba(255, 182, 193, 0.3)',
+          },
+          '& .MuiTimelineContent-root': {
+            px: { xs: 1, md: 2 },
+          },
+        }}
+      >
         {education.map((edu, index) => (
           <TimelineItem key={index}>
             <TimelineSeparator>
@@ -70,12 +85,13 @@ const Education = () => {
               >
                 <Card sx={{ 
                   mb: 2,
+                  overflow: 'hidden',
                   '&:hover': { 
                     transform: 'scale(1.02)',
                     transition: 'transform 0.3s'
                   }
                 }}>
-                  <CardContent>
+                  <CardContent sx={{ p: { xs: 2, md: 3 }, '&:last-child': { pb: { xs: 2, md: 3 } } }}>
                     <Typography variant="h6" color="primary">
                       {edu.school}
                     </Typography>

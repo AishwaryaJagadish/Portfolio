@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Box, Typography, Grid, Paper } from '@mui/material';
-import ParticlesBg from 'particles-bg';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Experience from './Experience';
@@ -33,12 +32,13 @@ const Home = () => {
       <Container 
         maxWidth="lg" 
         sx={{ 
-          pt: '100px', // Add padding-top to account for fixed header
-          pb: 8,
+          pt: { xs: '72px', md: '100px' },
+          pb: { xs: 4, md: 8 },
+          px: { xs: 2, sm: 3 },
           position: 'relative',
-          zIndex: 2, // Keep content above particles
+          zIndex: 2,
           '& > section': {
-            mb: 12,
+            mb: { xs: 8, md: 12 },
             '&:last-child': {
               mb: 0
             }
@@ -95,13 +95,13 @@ const AboutSection = () => {
   const theme = useTheme();
 
   return (
-    <Box id="about" sx={{ 
-      minHeight: '80vh',
+    <Box sx={{ 
+      minHeight: { xs: 'auto', md: '80vh' },
       display: 'flex',
       alignItems: 'center',
-      py: 4
+      py: { xs: 2, md: 4 }
     }}>
-      <Container>
+      <Box sx={{ width: '100%' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -123,21 +123,21 @@ const AboutSection = () => {
           </Typography>
           
           <Typography variant="h4" gutterBottom color="primary">
-            ML Enthusiast & Researcher
+            Software Developer & ML Enthusiast
           </Typography>
 
           <Typography 
             variant="body1" 
             paragraph 
             sx={{ 
-              fontSize: '1.2rem',
+              fontSize: { xs: '1rem', md: '1.2rem' },
               maxWidth: '800px',
               mb: 4,
               color: '#e6f1ff',
               textAlign: 'left'
             }}
           >
-            Computer Science Grad student at University of Southern California
+            Software Developer at Keck School of Medicine of the University of Southern California
           </Typography>
 
           <Typography 
@@ -153,17 +153,17 @@ const AboutSection = () => {
 
           <Grid container spacing={3}>
             {[
+              {
+                title: 'Software Engineering',
+                icon: <CodeIcon sx={{ fontSize: 40 }}/>,
+                desc: 'Full-Stack & System Design',
+                quote: '"Transforming ideas into impactful products"'
+              },
               { 
                 title: 'Machine Learning',
                 icon: <CodeIcon sx={{ fontSize: 40 }}/>,
                 desc: 'Deep Learning & Neural Networks',
                 quote: '"Where data meets intelligence"'
-              },
-              { 
-                title: 'Research',
-                icon: <BiotechIcon sx={{ fontSize: 40 }}/>,
-                desc: 'Image Processing & Cloud Security',
-                quote: '"Innovation through exploration"'
               },
               { 
                 title: 'Data Science',
@@ -230,7 +230,7 @@ const AboutSection = () => {
             ))}
           </Grid>
         </motion.div>
-      </Container>
+      </Box>
     </Box>
   );
 };
